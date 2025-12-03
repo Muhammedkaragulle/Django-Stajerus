@@ -1,0 +1,23 @@
+/* Minimal theme overrides for form cards */
+:root{
+    --site-accent: #4A148C;
+    --site-accent-2: #e91e63;
+}
+
+/* Card tweaks */
+.card { border-radius: 12px; }
+.card .card-title { color: var(--site-accent); font-weight: 700; }
+
+/* Buttons */
+.btn-primary { background-color: var(--site-accent-2); border-color: var(--site-accent-2); }
+
+/* Inputs */
+.form-control { border-radius: 8px; }
+
+/* Links inside forms */
+.page-body a { color: var(--site-accent); }
+
+/* Small responsive spacing for forms */
+@media (max-width: 576px){
+    .card-body { padding: 1rem; }
+}
