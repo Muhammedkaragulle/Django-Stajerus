@@ -1,0 +1,365 @@
+/* Notlar App - */
+
+:root {
+    --primary-color: #7c3aed;
+    --primary-dark: #6d28d9;
+    --primary-light: #a78bfa;
+    --secondary-color: #ede9fe;
+    --danger-color: #e74c3c;
+    --danger-light: #fadbd8;
+    --text-dark: #2d3748;
+    --text-muted: #718096;
+    --border-color: #e9d5ff;
+    --shadow-sm: 0 1px 3px rgba(124, 58, 237, 0.1);
+    --shadow-md: 0 4px 12px rgba(124, 58, 237, 0.15);
+    --shadow-lg: 0 8px 24px rgba(124, 58, 237, 0.12);
+}
+
+.muted {
+    color: var(--text-muted);
+}
+
+/* Container Layout */
+.container {
+    max-width: 1200px;
+}
+
+.row {
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+/* Main Title Styling */
+h1, h2, h3, h4, h5, h6 {
+    color: var(--text-dark);
+    font-weight: 600;
+    letter-spacing: -0.5px;
+}
+
+/* Card Styling */
+.card {
+    border: none;
+    border-radius: 12px;
+    box-shadow: var(--shadow-md);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    background: #f3e8ff;
+    overflow: hidden;
+}
+
+.card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+}
+
+.card-body {
+    padding: 2rem;
+}
+
+.card-title {
+    font-size: 1.5rem;
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.card-title::before {
+    content: '';
+    display: inline-block;
+    width: 4px;
+    height: 1.5rem;
+    background: var(--primary-color);
+    border-radius: 2px;
+}
+
+/* Sidebar - Courses */
+.col-md-4 {
+    display: flex;
+    flex-direction: column;
+}
+
+.card.mb-3 {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+/* List Group - Courses */
+.list-group {
+    border: none;
+    margin-top: 1rem;
+}
+
+.list-group-item {
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 0.75rem 1rem;
+    margin-bottom: 0.5rem;
+    background: #faf5ff;
+    transition: all 0.2s ease;
+    position: relative;
+}
+
+.list-group-item:hover {
+    background: var(--secondary-color);
+    border-color: var(--primary-color);
+    transform: translateX(4px);
+}
+
+.list-group-item.active {
+    background: var(--primary-color);
+    border-color: var(--primary-color);
+    color: white;
+}
+
+.list-group-item.active a {
+    color: white;
+}
+
+.list-group-item a {
+    color: var(--text-dark);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+
+.list-group-item a:hover {
+    color: var(--primary-color);
+}
+
+.list-group-item.text-muted {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    text-align: center;
+    padding: 1.5rem;
+}
+
+.stretched-link::after {
+    display: none;
+}
+
+/* Input Groups */
+.input-group {
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+}
+
+.input-group input {
+    border: none;
+    padding: 0.75rem 1rem;
+    font-size: 0.95rem;
+}
+
+.input-group button {
+    border: none;
+    padding: 0.75rem 1.5rem;
+}
+
+/* Forms */
+.form-control {
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    padding: 0.75rem 1rem;
+    font-size: 0.95rem;
+    transition: all 0.2s ease;
+    background: #faf5ff;
+}
+
+.form-control:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(94, 114, 228, 0.1);
+    background: white;
+}
+
+textarea.form-control {
+    min-height: 120px;
+    resize: vertical;
+    font-family: 'Segoe UI', monospace;
+}
+
+/* Buttons */
+.btn {
+    border-radius: 8px;
+    padding: 0.75rem 1.5rem;
+    font-weight: 500;
+    border: none;
+    transition: all 0.2s ease;
+    font-size: 0.95rem;
+}
+
+.btn-primary {
+    background: var(--primary-color);
+    color: white;
+}
+
+.btn-primary:hover {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.btn-outline-secondary {
+    border: 2px solid var(--border-color);
+    color: var(--text-dark);
+    background: white;
+}
+
+.btn-outline-secondary:hover {
+    background: var(--secondary-color);
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+}
+
+.btn-outline-danger {
+    border: 2px solid var(--danger-light);
+    color: var(--danger-color);
+    background: white;
+}
+
+.btn-outline-danger:hover {
+    background: var(--danger-light);
+    border-color: var(--danger-color);
+}
+
+/* Button Group */
+.d-flex.gap-2 {
+    gap: 1rem;
+}
+
+.d-flex.gap-2 form {
+    flex: 1;
+}
+
+.d-flex.gap-2 button {
+    flex: 1;
+}
+
+/* Notes Display */
+.card.mb-2 {
+    border: 1px solid var(--border-color);
+    margin-bottom: 1rem;
+    transition: all 0.2s ease;
+    background: #f3e8ff;
+}
+
+.card.mb-2:hover {
+    box-shadow: var(--shadow-md);
+    border-color: var(--primary-color);
+}
+
+.card.mb-2 .card-body {
+    padding: 1.5rem;
+}
+
+.card.mb-2 .card-title {
+    font-size: 1.1rem;
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+}
+
+.card.mb-2 .text-muted {
+    font-size: 0.85rem;
+    margin-bottom: 0.75rem;
+}
+
+.card.mb-2 p {
+    color: var(--text-dark);
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* Main Content Area */
+.col-md-8 {
+    display: flex;
+    flex-direction: column;
+}
+
+.card:last-child {
+    flex: 1;
+}
+
+/* Horizontal Rule */
+hr {
+    border: none;
+    border-top: 2px solid var(--border-color);
+    margin: 1.5rem 0;
+}
+
+/* Empty State Message */
+p.muted {
+    text-align: center;
+    padding: 2rem 1rem;
+    font-size: 0.95rem;
+    color: var(--text-muted);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .row {
+        gap: 1.5rem;
+        flex-direction: column;
+    }
+
+    .col-md-4,
+    .col-md-8 {
+        width: 100%;
+    }
+
+    .card-body {
+        padding: 1.5rem;
+    }
+
+    .card-title {
+        font-size: 1.25rem;
+    }
+
+    .d-flex.gap-2 {
+        flex-direction: column;
+    }
+
+    .d-flex.gap-2 form {
+        width: 100%;
+    }
+}
+
+/* Animations */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.card {
+    animation: slideIn 0.3s ease-out;
+}
+
+.list-group-item {
+    animation: slideIn 0.3s ease-out;
+}
+
+/* Focus States for Accessibility */
+button:focus,
+input:focus,
+a:focus {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
+/* Print Styles */
+@media print {
+    body {
+        background: white;
+    }
+
+    .card {
+        box-shadow: none;
+        border: 1px solid var(--border-color);
+    }
+}
