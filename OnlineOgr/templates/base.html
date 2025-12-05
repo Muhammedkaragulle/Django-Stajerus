@@ -17,8 +17,8 @@
             <div class="header-top">
                 <div class="logo"><h1><a href="{% url 'anasayfa' %}">Stajyerus</a></h1></div>
                 <div class="top-menu">
-                    <a href="#">Hakkımızda</a>
-                    <a href="#">Bize Ulaşın</a>
+                    <a href="{% url 'Hakkimizda' %}">Hakkımızda</a>
+                    <a href="{% url 'Ulas' %}">Bize Ulaşın</a>
                     <a href="{% url 'Notlar:index' %}">Notlarım</a>
                     {% if user.is_authenticated %}
                         <span class="user-name">{{ user.username }}</span>

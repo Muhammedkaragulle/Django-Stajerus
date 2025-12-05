@@ -1,0 +1,369 @@
+:root {
+           
+            --primary-color: #7c3aed;
+            --primary-dark: #6d28d9;
+            --primary-light: #a78bfa;
+            --secondary-color: #ede9fe;
+            --text-dark: #374151; 
+            --text-muted: #9ca3af;
+            --border-color: #f3e8ff; 
+            
+            
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 10px rgba(124, 58, 237, 0.08); 
+            --shadow-lg: 0 12px 24px rgba(124, 58, 237, 0.1); /* Daha yumuşak yayılım */
+
+            /* Geçiş hızını tanımla */
+            --transition-timing: cubic-bezier(0.4, 0, 0.2, 1); /* Hızlandırılmış yumuşak geçiş */
+        }
+
+        /* Reset and General */
+        .page-content, .page-content * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            /* Arka plan biraz daha açık ve yumuşak */
+            background: linear-gradient(135deg, #f9f6ff 0%, #f3e8ff 100%); 
+            min-height: 100vh;
+            padding: 2rem 0;
+            color: var(--text-dark);
+        }
+
+        .page-content {
+            width: 95%;
+            max-width: 960px; /* Maksimum genişlik biraz küçüldü */
+            margin: 0 auto;
+        }
+
+        .page-body {
+            margin-top: 2rem;
+            padding: 0 1rem;
+        }
+
+        /* Hero Section - Ana İçerik Kutusu */
+        .hero {
+            background: white;
+            border: 1px solid var(--border-color); /* Daha ince kenarlık */
+            border-radius: 20px; /* Köşeler yumuşatıldı */
+            padding: 3.5rem 2.5rem; /* Padding küçüldü */
+            text-align: center;
+            box-shadow: var(--shadow-md); /* Gölge yumuşatıldı */
+            animation: slideIn 0.5s var(--transition-timing);
+            margin-bottom: 2rem; 
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 300px; /* Vurgu küçüldü */
+            height: 80px;
+            background: var(--primary-light);
+            opacity: 0.15;
+            filter: blur(40px);
+            z-index: 0;
+        }
+
+
+        .hero h2.main-title { 
+            font-size: 2.5rem; /* Başlık küçüldü */
+            color: var(--primary-dark);
+            font-weight: 700;
+            margin: 0 0 0.8rem 0;
+            letter-spacing: -1px;
+            z-index: 1;
+            position: relative;
+        }
+
+        .hero p.slogan {
+            font-size: 1.15rem; /* Slogan küçüldü */
+            color: var(--text-muted);
+            margin: 0; 
+            font-weight: 400;
+        }
+
+        /* Input Group (Kaldırılmış olsa da stil tutuldu) */
+        .input-group {
+            border-radius: 10px;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border-color);
+            display: flex;
+            gap: 0;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .input-group input { border: none; padding: 0.8rem 1.2rem; font-size: 1rem; flex: 1; background: white; color: var(--text-dark); }
+        .input-group input:focus { outline: none; background: #fdfbff; }
+        .input-group button.btn-primary {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+            color: white;
+            border: none;
+            padding: 0.8rem 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 0.95rem;
+            border-radius: 0 10px 10px 0;
+        }
+        .input-group button.btn-primary:hover {
+            background: linear-gradient(135deg, var(--primary-dark) 0%, #5b21b6 100%);
+        }
+
+        /* Features Section - YATAY GÖRÜNÜM */
+        .features-grid {
+            display: flex;
+            gap: 20px; /* Boşluk küçüldü */
+            margin-top: 30px;
+            overflow-x: auto;
+            padding-bottom: 15px;
+            scrollbar-width: thin; 
+            scrollbar-color: var(--primary-light) var(--secondary-color);
+        }
+
+        .feature-box {
+            background: white; 
+            padding: 25px; /* Padding küçüldü */
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow-sm);
+            transition: all 0.3s var(--transition-timing);
+            text-align: left;
+            position: relative;
+            
+            flex: 0 0 280px; /* Genişlik küçüldü */
+        }
+
+        .feature-box:hover {
+            transform: translateY(-5px); /* Yükselme küçüldü */
+            box-shadow: var(--shadow-md);
+            border-color: var(--primary-light);
+        }
+
+        .feature-icon-wrapper {
+            background: var(--secondary-color);
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 50px; /* İkon küçüldü */
+            height: 50px;
+            border-radius: 50%;
+            margin-bottom: 12px;
+            box-shadow: 0 0 0 4px white, var(--shadow-sm); /* Halka efekti küçüldü */
+            border: 1px solid var(--primary-light);
+        }
+
+        .feature-icon-wrapper svg {
+            width: 24px; /* SVG küçüldü */
+            height: 24px;
+            color: var(--primary-dark);
+        }
+
+        .feature-box h3 {
+            color: var(--primary-dark);
+            margin-top: 0;
+            font-size: 1.3em; /* Başlık küçüldü */
+            padding-bottom: 4px;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .feature-box p {
+            color: var(--text-muted);
+            font-size: 0.95rem; /* Metin küçüldü */
+        }
+
+        /* YENILENEN: How It Works - Step Boxes - V7 (Nazik ve Akıcı) */
+        .steps-container {
+            display: flex;
+            flex-wrap: nowrap;
+            justify-content: space-between;
+            gap: 0px; 
+            margin: 3rem 0 4rem 0;
+            position: relative;
+            
+            /* Kapsayıcıya arka plan */
+            background: white;
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 40px 20px; /* Padding küçüldü */
+            box-shadow: var(--shadow-md); 
+            overflow-x: auto; 
+        }
+
+        /* Okları Adımların Arasına Yerleştir */
+        .step-box {
+            /* Yan yana durması için zorla */
+            flex: 0 0 280px; /* Genişlik küçüldü */
+            padding: 25px 20px; /* Padding küçüldü */
+            border-radius: 12px;
+            background: var(--secondary-color);
+            box-shadow: 0 4px 8px rgba(124, 58, 237, 0.05); /* Yumuşak gölge */
+            border: 1px solid var(--primary-light);
+            position: relative;
+            text-align: center;
+            z-index: 2;
+            transition: all 0.3s var(--transition-timing);
+            margin-right: 15px; /* Kartlar arasında boşluk küçüldü */
+        }
+
+        /* YENİ: Akış okları (daha zarif) */
+        .step-box::after {
+            content: '→'; 
+            position: absolute;
+            right: -30px; /* Okun kartlar arasındaki boşluğa gelmesi için ayarlandı */
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--primary-light); /* Daha nazik bir ok rengi */
+            font-size: 2rem; /* Ok küçüldü */
+            font-weight: 700;
+            opacity: 0.8;
+            z-index: 3;
+            transition: all 0.3s var(--transition-timing);
+        }
+
+        /* Kartın üzerine gelince ok canlansın */
+        .step-box:hover::after {
+            transform: translateY(-50%) translateX(5px); 
+            color: var(--primary-dark);
+        }
+
+        /* Son adımdan oku kaldır */
+        .steps-container .step-box:last-child {
+            margin-right: 0;
+        }
+        .steps-container .step-box:last-child::after {
+            content: none;
+        }
+
+
+        .step-box:hover {
+            transform: translateY(-5px); /* Yükselme küçüldü */
+            box-shadow: var(--shadow-md); 
+        }
+
+        .step-number {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 50px; /* Boyut küçüldü */
+            height: 50px;
+            border-radius: 50%;
+            background: var(--primary-color);
+            color: white;
+            font-size: 1.5rem; /* Font küçüldü */
+            font-weight: 800;
+            margin-bottom: 20px;
+            /* Dış Mor Işıltı */
+            box-shadow: 0 0 0 6px white, 0 0 0 10px var(--primary-light); /* Halka inceldi */
+            border: none;
+        }
+
+        .step-box h4 {
+            color: var(--primary-dark);
+            font-size: 1.25rem; /* Başlık küçüldü */
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+
+        .step-box p {
+            font-size: 0.9rem; /* Açıklama küçüldü */
+            color: var(--text-muted);
+        }
+
+        /* Heading 2 General Style */
+        h2 {
+            font-size: 2rem; /* Başlık küçüldü */
+            color: var(--primary-dark);
+            margin: 3.5rem 0 1.5rem 0;
+            font-weight: 700;
+            text-align: center;
+            /* Başlık altına ince bir ayırıcı çizgi */
+            border-bottom: 2px solid var(--primary-light); /* Çizgi inceldi */
+            padding-bottom: 8px;
+        }
+
+
+        /* Call to Action (CTA) Mesajı */
+        .cta-message {
+            margin-top: 40px;
+            padding: 20px 25px;
+            border-radius: 10px;
+            background: var(--secondary-color);
+            border: 1px solid var(--primary-light);
+            text-align: center;
+            font-size: 1.1em; /* Yazı boyutu küçüldü */
+            font-weight: 600;
+            color: var(--text-dark);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .cta-message a {
+            color: var(--primary-dark);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .cta-message a:hover {
+            text-decoration: underline;
+            color: var(--primary-color);
+        }
+
+
+        /* Animations */
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px); /* Yükselme küçüldü */
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            body { padding: 1rem 0; }
+            .hero { padding: 2rem 1.5rem; }
+            .hero h2.main-title { font-size: 1.8rem; }
+            .hero p.slogan { font-size: 1rem; }
+            h2 { font-size: 1.7rem; margin-top: 1.5rem; }
+            .cta-message { padding: 12px; font-size: 1em; }
+            
+            /* Mobil: Adımların yatay akışı korunur */
+            .steps-container {
+                flex-direction: row; 
+                gap: 30px; /* Boşluk küçüldü */
+                padding: 30px 10px; /* Padding küçüldü */
+                overflow-x: auto;
+            }
+            
+            .steps-container::before { content: none; }
+            
+            /* Mobil: Adım okları mobil ekranda da görünür */
+            .step-box::after {
+                right: -10px; /* Oklar daha yakın */
+                font-size: 1.5rem;
+            }
+            
+            .steps-container .step-box:last-child::after {
+                content: none;
+            }
+            
+            /* Mobil: Yatay kaydırma çubuğunu görünür yap */
+            .steps-container::-webkit-scrollbar {
+                height: 6px;
+            }
+            .steps-container::-webkit-scrollbar-thumb {
+                background: var(--primary-light);
+                border-radius: 10px;
+            }
+        }
