@@ -1,0 +1,359 @@
+/* Authentication Pages - Purple Theme */
+
+:root {
+    --primary-color: #7c3aed;
+    --primary-dark: #6d28d9;
+    --primary-light: #a78bfa;
+    --secondary-color: #ede9fe;
+    --danger-color: #e74c3c;
+    --danger-light: #fadbd8;
+    --text-dark: #2d3748;
+    --text-muted: #718096;
+    --border-color: #e9d5ff;
+    --shadow-sm: 0 1px 3px rgba(124, 58, 237, 0.1);
+    --shadow-md: 0 4px 12px rgba(124, 58, 237, 0.15);
+    --shadow-lg: 0 8px 24px rgba(124, 58, 237, 0.12);
+}
+
+body {
+    background: linear-gradient(135deg, #f3e8ff 0%, #ede9fe 50%, #ddd6fe 100%);
+    min-height: 100vh;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Container */
+.container {
+    max-width: 1200px;
+}
+
+.row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Main Title Styling */
+h1, h2, h3, h4, h5, h6 {
+    color: var(--text-dark);
+    font-weight: 600;
+    letter-spacing: -0.5px;
+}
+
+/* Card Styling */
+.card {
+    border: none;
+    border-radius: 16px;
+    box-shadow: var(--shadow-lg);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background: white;
+    overflow: hidden;
+    border: 2px solid rgba(124, 58, 237, 0.2);
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 32px rgba(124, 58, 237, 0.2);
+}
+
+.card-body {
+    padding: 3rem 2.5rem;
+}
+
+.card-title {
+    font-size: 1.75rem;
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+    font-weight: 700;
+    text-align: center;
+}
+
+/* Alert Messages */
+.alert {
+    border-radius: 10px;
+    border: none;
+    margin-bottom: 1.5rem;
+    font-weight: 500;
+    animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.alert-danger {
+    background: #fee2e2;
+    color: #991b1b;
+}
+
+.alert-info {
+    background: #dbeafe;
+    color: #0c2340;
+}
+
+.alert-success {
+    background: #dcfce7;
+    color: #15803d;
+}
+
+.alert-warning {
+    background: #fef3c7;
+    color: #92400e;
+}
+
+.btn-close {
+    opacity: 0.7;
+    transition: opacity 0.2s ease;
+}
+
+.btn-close:hover {
+    opacity: 1;
+}
+
+/* Form Labels */
+.form-label {
+    font-weight: 600;
+    color: var(--text-dark);
+    margin-bottom: 0.6rem;
+    display: block;
+    font-size: 0.95rem;
+}
+
+/* Form Controls */
+.form-control {
+    border: 2px solid var(--border-color);
+    border-radius: 10px;
+    padding: 0.875rem 1.125rem;
+    font-size: 0.95rem;
+    transition: all 0.2s ease;
+    background: #faf5ff;
+    color: var(--text-dark);
+}
+
+.form-control:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 4px rgba(124, 58, 237, 0.1);
+    background: white;
+}
+
+.form-control::placeholder {
+    color: var(--text-muted);
+}
+
+.form-control.is-invalid {
+    border-color: var(--danger-color);
+    background: #fef2f2;
+}
+
+.form-control.is-invalid:focus {
+    box-shadow: 0 0 0 4px rgba(231, 76, 60, 0.1);
+}
+
+/* Form Groups */
+.mb-3 {
+    margin-bottom: 1.5rem;
+}
+
+/* Error Messages */
+.invalid-feedback {
+    display: block;
+    color: var(--danger-color);
+    font-size: 0.85rem;
+    margin-top: 0.5rem;
+    font-weight: 500;
+    animation: slideDown 0.2s ease-out;
+}
+
+/* Help Text */
+.form-text {
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    margin-top: 0.4rem;
+    display: block;
+}
+
+/* Buttons */
+.btn {
+    border-radius: 10px;
+    padding: 0.875rem 1.75rem;
+    font-weight: 600;
+    border: none;
+    transition: all 0.2s ease;
+    font-size: 0.95rem;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+    color: white;
+    box-shadow: var(--shadow-md);
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, var(--primary-dark) 0%, #5b21b6 100%);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+}
+
+.btn-primary:active {
+    transform: translateY(0);
+}
+
+/* Full Width Button */
+.d-grid {
+    display: grid;
+    gap: 1rem;
+}
+
+.d-grid .btn {
+    width: 100%;
+    padding: 1rem;
+}
+
+/* Links */
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.2s ease;
+}
+
+a:hover {
+    color: var(--primary-dark);
+    text-decoration: underline;
+}
+
+/* Text Center */
+.text-center {
+    text-align: center;
+}
+
+.mt-3 {
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 2px solid var(--border-color);
+}
+
+.mt-3 a {
+    font-size: 0.95rem;
+}
+
+/* Flex Layout */
+.d-flex {
+    display: flex;
+}
+
+.flex-column {
+    flex-direction: column;
+}
+
+.gap-2 {
+    gap: 1rem;
+}
+
+.justify-content-center {
+    justify-content: center;
+}
+
+.align-items-center {
+    align-items: center;
+}
+
+/* Column Sizing */
+.col-md-6 {
+    width: 50%;
+}
+
+.col-md-7 {
+    width: 58.333%;
+}
+
+.col-lg-5 {
+    max-width: 500px;
+    width: 100%;
+}
+
+.col-lg-6 {
+    max-width: 580px;
+    width: 100%;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    body {
+        padding: 1rem;
+    }
+
+    .card-body {
+        padding: 2rem 1.5rem;
+    }
+
+    .card-title {
+        font-size: 1.5rem;
+    }
+
+    .col-md-6,
+    .col-md-7 {
+        width: 100%;
+    }
+
+    .col-lg-5,
+    .col-lg-6 {
+        max-width: 100%;
+    }
+
+    .form-control {
+        padding: 0.75rem 1rem;
+        font-size: 0.9rem;
+    }
+
+    .btn {
+        padding: 0.75rem 1.5rem;
+    }
+}
+
+/* Validation States */
+input:valid {
+    border-color: #22c55e;
+}
+
+input:invalid {
+    border-color: var(--danger-color);
+}
+
+/* Focus States for Accessibility */
+button:focus,
+input:focus,
+a:focus {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
+/* Loading State */
+.btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* Print Styles */
+@media print {
+    body {
+        background: white;
+    }
+
+    .card {
+        box-shadow: none;
+        border: 1px solid var(--border-color);
+    }
+}

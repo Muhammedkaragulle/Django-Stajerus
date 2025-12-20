@@ -1,0 +1,150 @@
+/* Scoped registration styles: apply only inside page content */
+.page-body .register-container * { box-sizing: border-box; }
+.page-body .register-container { font-family: 'Inter', sans-serif; }
+
+/* --- Giriş Sayfası Konteyneri --- */
+.page-body .register-container {
+            width: 90%;
+            max-width: 420px; /* Giriş formu için daha kompakt bir genişlik */
+            padding: 40px 30px;
+            
+            /* Ana sayfa ile aynı koyu mor arka plan, yuvarlak köşeler ve gölge */
+            background-color: #4A148C;
+            color: white;
+            border-radius: 16px;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+            
+            /* Zemin efekti için gölgeli arka plan (Opsiyonel, ana sayfa tutarlılığı için eklendi) */
+            position: relative;
+            overflow: hidden;
+            z-index: 1; /* İçerik için yüksek z-index */
+        }
+
+        /* Arka plan deseni/kaplaması */
+    .page-body .register-container::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://images.unsplash.com/photo-1546410531-bb4caa6b424d?q=80&w=1471&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.2; 
+            z-index: -1;
+        }
+
+        /* --- Başlık ve Form Stilleri --- */
+
+    .page-body .register-container .login-header h2 {
+            /* Altın rengi vurgu */
+            color: #FFB74D; 
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 30px;
+            letter-spacing: 1px;
+        }
+
+    .page-body .register-container .login-form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 20px;
+            text-align: left; /* Etiketlerin sola hizalanması */
+        }
+
+        /* Form elemanlarının sarıldığı div (etiket ve input için) */
+    .page-body .register-container .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+    .page-body .register-container .form-group label {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 5px;
+            opacity: 0.9;
+        }
+
+
+        /* Ana sayfadaki arama kutusuyla tutarlı input stili */
+    .page-body .register-container .login-input {
+            padding: 14px 18px;
+            border: none;
+            border-radius: 10px;
+            width: 100%;
+            font-size: 16px;
+            color: #333;
+            box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
+        }
+
+        .page-body .register-container .login-input:focus {
+            outline: none;
+            /* Ana sayfadaki focus efektiyle tutarlı */
+            box-shadow: 0 0 0 3px rgba(255, 183, 77, 0.5), inset 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        /* --- Buton Stilleri (Ana sayfa ile aynı) --- */
+
+    .page-body .register-container .btn {
+            padding: 14px 25px; 
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            margin-top: 10px;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 100%; /* Butonların genişliği form ile aynı olsun */
+        }
+
+        .page-body .register-container .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Primary Buton (Giriş Yap butonu için ana renk) */
+    .page-body .register-container .btn-primary {
+            background-color: #E91E63; /* Pembe/Kırmızı vurgu */
+            color: white;
+            margin-top: 20px; /* Buton öncesine biraz daha boşluk */
+        }
+
+        .page-body .register-container .btn-primary:hover {
+            background-color: #C2185B;
+        }
+
+        /* Mobil Uyumluluk */
+        @media (max-width: 480px) {
+            .page-body .register-container {
+                padding: 30px 20px;
+                border-radius: 12px;
+            }
+            .page-body .register-container .login-header h2 {
+                font-size: 28px;
+            }
+        }
+        
+        /* Yeni eklenen link stili */
+    .page-body .register-container .login-link {
+            display: block;
+            margin-top: 15px;
+            color: #FFB74D; /* Altın rengi vurgu */
+            text-decoration: none;
+            font-size: 14px;
+            opacity: 0.9;
+            transition: color 0.3s, opacity 0.3s;
+        }
+
+        .page-body .register-container .login-link:hover {
+            color: white;
+            opacity: 1;
+            text-decoration: underline;
+        }

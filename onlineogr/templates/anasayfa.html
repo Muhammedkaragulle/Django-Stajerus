@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Stajyerus - Anasayfa{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'anasayfa.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="main-content">
+        <div class="hero">
+            <h2>Tek ihtiyacın bilgin!</h2>
+            <p>Stajyerus'la online eğitim parmaklarının ucunda!</p>
+
+            <div class="input-group w-75">
+                <input type="text" class="form-control" placeholder="Hangi alanda eğitim almak istiyorsun?">
+                <button class="btn btn-outline-secondary" type="button">Tüm Kategoriler</button>
+                <button class="btn btn-primary" type="button">Kurs Ara</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="external-info">
+        <h3>Online Eğitim Platformları: Verimli Vakit Geçirebileceğiniz Siteler</h3>
+        <p class="copyright-text">Görseller telif hakkına tabi olabilir. Daha Fazla Bilgi</p>
+
+        <div class="external-actions">
+            <div class="share-save">
+                <a href="#">Paylaş</a>
+                <a href="#">Kaydet</a>
+            </div>
+            <button class="btn-git">Git</button>
+        </div>
+    </div>
+{% endblock %}
