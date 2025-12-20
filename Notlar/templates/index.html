@@ -6,7 +6,336 @@
 
 {% block extra_css %}
     <link rel="stylesheet" href="{% static 'notlar.css' %}">
-    <style>.muted { color: rgba(0,0,0,0.6); }</style>
+    <style>
+        .muted { color: rgba(0,0,0,0.6); }
+        
+        .page-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem 0;
+            margin-bottom: 2rem;
+            border-radius: 12px;
+        }
+        
+        .sidebar-card {
+            border: none;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+        }
+        
+        .sidebar-card:hover {
+            box-shadow: 0 8px 16px rgba(102, 126, 234, 0.2);
+        }
+        
+        .sidebar-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1rem;
+            border-radius: 12px 12px 0 0;
+            font-weight: 700;
+        }
+        
+        .add-course-form {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .add-course-form input {
+            border-radius: 8px;
+            border: 1px solid #e0e0e0;
+            padding: 0.65rem;
+            font-size: 0.9rem;
+        }
+        
+        .add-course-form button {
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 0.65rem 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .add-course-form button:hover {
+            background: #764ba2;
+            transform: scale(1.02);
+        }
+        
+        .courses-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .courses-list li {
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .courses-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .courses-list li a {
+            display: block;
+            padding: 0.85rem 1rem;
+            text-decoration: none;
+            color: #333;
+            transition: all 0.2s;
+            border-left: 4px solid transparent;
+        }
+        
+        .courses-list li a:hover {
+            background: #f5f5f5;
+            border-left-color: #667eea;
+            color: #667eea;
+        }
+        
+        .courses-list li.active a {
+            background: #f0f4ff;
+            border-left-color: #667eea;
+            color: #667eea;
+            font-weight: 600;
+        }
+        
+        .main-card {
+            border: none;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        
+        .card-header-custom {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 12px 12px 0 0;
+            font-weight: 700;
+            font-size: 1.25rem;
+        }
+        
+        .form-section {
+            background: #f8faff;
+            padding: 2rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+        }
+        
+        .form-input-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-input-group:last-of-type {
+            margin-bottom: 2rem;
+        }
+        
+        .form-input-group label {
+            display: block;
+            font-size: 0.95rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            color: #333;
+            letter-spacing: 0.3px;
+        }
+        
+        .form-input-group input,
+        .form-input-group textarea {
+            width: 100%;
+            border: 1.5px solid #ddd;
+            border-radius: 8px;
+            padding: 0.9rem 1rem;
+            font-size: 0.95rem;
+            font-family: inherit;
+            transition: all 0.2s;
+            background: white;
+        }
+        
+        .form-input-group textarea {
+            resize: vertical;
+            min-height: 150px;
+        }
+        
+        .form-input-group input:focus,
+        .form-input-group textarea:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.15);
+            background: #fafbff;
+        }
+        
+        .public-checkbox-wrapper {
+            background: white;
+            border: 2px solid #e8ecff;
+            border-radius: 10px;
+            padding: 1.25rem;
+            margin-bottom: 2rem;
+            transition: all 0.2s;
+        }
+        
+        .public-checkbox-wrapper:hover {
+            border-color: #667eea;
+            background: #f8faff;
+            box-shadow: 0 2px 8px rgba(102, 126, 234, 0.1);
+        }
+        
+        .public-checkbox-wrapper .form-check {
+            margin: 0;
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .public-checkbox-wrapper .form-check-input {
+            width: 1.25rem;
+            height: 1.25rem;
+            accent-color: #667eea;
+            cursor: pointer;
+            margin-top: 0.2rem;
+            flex-shrink: 0;
+        }
+        
+        .public-checkbox-wrapper .form-check-label {
+            font-weight: 700;
+            font-size: 1rem;
+            margin-left: 0.75rem;
+            cursor: pointer;
+            user-select: none;
+            color: #333;
+        }
+        
+        .public-checkbox-wrapper small {
+            display: block;
+            margin-top: 0.5rem;
+            margin-left: 2rem;
+            color: #666;
+            line-height: 1.5;
+            font-size: 0.9rem;
+        }
+        
+        .button-group {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+        }
+        
+        .btn-save {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 0.9rem 2.5rem;
+            font-weight: 700;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+        }
+        
+        .btn-save:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(102, 126, 234, 0.4);
+        }
+        
+        .btn-save:active {
+            transform: translateY(0);
+        }
+        
+        .info-alert {
+            background: linear-gradient(135deg, #e8ecff 0%, #f0f4ff 100%);
+            border: 2px solid #667eea;
+            border-radius: 10px;
+            padding: 1.25rem;
+            margin-top: 0;
+            margin-bottom: 2rem;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .info-alert a {
+            color: #667eea;
+            font-weight: 700;
+            text-decoration: none;
+        }
+        
+        .info-alert a:hover {
+            text-decoration: underline;
+        }
+        
+        .clear-notes-btn {
+            background: white;
+            color: #e74c3c;
+            border: 2px solid #e74c3c;
+            border-radius: 8px;
+            padding: 0.7rem 1.5rem;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            margin-bottom: 2rem;
+        }
+        
+        .clear-notes-btn:hover {
+            background: #e74c3c;
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        .notes-header {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: #333;
+            margin: 0 0 1.5rem 0;
+            padding-bottom: 1rem;
+            border-bottom: 3px solid #667eea;
+        }
+        
+        .note-item {
+            background: white;
+            border: 1px solid #e9ecef;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            transition: all 0.2s;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        
+        .note-item:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transform: translateY(-2px);
+        }
+        
+        .note-item-title {
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: #333;
+            margin-bottom: 0.75rem;
+        }
+        
+        .note-item-meta {
+            font-size: 0.85rem;
+            color: #999;
+            margin-bottom: 1rem;
+        }
+        
+        .note-item-content {
+            color: #555;
+            line-height: 1.6;
+            word-break: break-word;
+        }
+        
+        .empty-state {
+            text-align: center;
+            padding: 2rem;
+            color: #999;
+        }
+        
+        .empty-state-icon {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+    </style>
 {% endblock %}
 
 {% block content %}
@@ -16,27 +345,37 @@
         </div>
     {% else %}
     <div class="container py-4">
+        {% if selected_course %}
+            <div class="page-header">
+                <h2 style="margin: 0; font-size: 2rem;">📚 {{ selected_course.name }}</h2>
+                <p style="margin: 0.5rem 0 0 0; opacity: 0.95;">Ders notlarınızı yönetin ve paylaşın</p>
+            </div>
+        {% endif %}
+
         <div class="row">
             <aside class="col-md-4">
-                <div class="card mb-3">
-                    <div class="card-body">
-                        <h5 class="card-title">Dersler</h5>
-                        <form method="post">
+                <div class="sidebar-card">
+                    <div class="sidebar-header">
+                        📖 Derslerim
+                    </div>
+                    <div class="p-3">
+                        <form method="post" class="add-course-form">
                             {% csrf_token %}
                             <input type="hidden" name="action" value="add_course">
-                            <div class="input-group mb-2">
-                                <input name="course_name" class="form-control" placeholder="Yeni ders adı">
-                                <button class="btn btn-outline-secondary" type="submit">Ekle</button>
-                            </div>
+                            <input name="course_name" placeholder="Yeni ders adı..." required>
+                            <button type="submit">➕ Ekle</button>
                         </form>
 
-                        <ul class="list-group">
+                        <ul class="courses-list">
                             {% for c in courses %}
-                                <li class="list-group-item {% if selected_course and c.id == selected_course.id %}active{% endif %}">
-                                    <a href="?course={{ c.id }}" class="stretched-link text-reset">{{ c.name }}</a>
+                                <li {% if selected_course and c.id == selected_course.id %}class="active"{% endif %}>
+                                    <a href="?course={{ c.id }}">{{ c.name }}</a>
                                 </li>
                             {% empty %}
-                                <li class="list-group-item text-muted">Henüz ders yok</li>
+                                <div class="empty-state" style="padding: 2rem 1rem;">
+                                    <div class="empty-state-icon">📚</div>
+                                    <p>Henüz ders yok</p>
+                                </div>
                             {% endfor %}
                         </ul>
                     </div>
@@ -44,53 +383,90 @@
             </aside>
 
             <main class="col-md-8">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">{% if selected_course %}{{ selected_course.name }}{% else %}Notlar{% endif %}</h5>
+                <div class="main-card">
+                    <div class="card-header-custom">
+                        ✍️ {% if selected_course %}{{ selected_course.name }}{% else %}Notlar{% endif %}
+                    </div>
 
+                    <div style="padding: 2rem;">
                         {% if not user.is_authenticated %}
                             <p>Lütfen <a href="{% url 'giris' %}">giriş</a> yapın.</p>
                         {% else %}
                            
-                            <form method="post">
-                                {% csrf_token %}
-                                <input type="hidden" name="action" value="add_note">
-                                <input type="hidden" name="course_id" value="{% if selected_course %}{{ selected_course.id }}{% endif %}">
-                                <div class="mb-2">
-                                    <input name="note_title" class="form-control" placeholder="Not başlığı">
-                                </div>
-                                <div class="mb-2">
-                                    <textarea name="note_content" class="form-control" placeholder="Not içeriği" rows="5"></textarea>
-                                </div>
-                                <div class="d-flex gap-2">
-                                    <button class="btn btn-primary" type="submit">Notu Kaydet</button>
-                                </div>
-                            </form>
+                            <div class="form-section">
+                                <h6 style="font-weight: 700; margin-bottom: 1rem; color: #333;">Yeni Not Ekle</h6>
+                                <form method="post">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="action" value="add_note">
+                                    <input type="hidden" name="course_id" value="{% if selected_course %}{{ selected_course.id }}{% endif %}">
+                                    
+                                    <div class="form-input-group">
+                                        <label for="note_title">📝 Not Başlığı</label>
+                                        <input type="text" id="note_title" name="note_title" placeholder="Başlık yazın...">
+                                    </div>
+
+                                    <div class="form-input-group">
+                                        <label for="note_content">📄 Not İçeriği</label>
+                                        <textarea id="note_content" name="note_content" placeholder="Not içeriğini yazın..." rows="6"></textarea>
+                                    </div>
+
+                                    <div class="public-checkbox-wrapper">
+                                        <div class="form-check">
+                                            <input type="checkbox" class="form-check-input" value="1" id="is_public" name="is_public">
+                                            <label class="form-check-label" for="is_public">
+                                                🌐 Herkese Açık Olarak Paylaş
+                                            </label>
+                                            <small>Bu seçeneği işaretlerseniz, diğer kullanıcılar bu notu görebilir, beğenebilir, beğenmeyebilir ve yorum yapabilir.</small>
+                                        </div>
+                                    </div>
+
+                                    <div class="button-group">
+                                        <button type="submit" class="btn-save">💾 Notu Kaydet</button>
+                                    </div>
+                                </form>
+                            </div>
+
+                            <div class="info-alert">
+                                ℹ️ <strong>Herkese Açık Notları Keşfet:</strong> <a href="{% url 'Notlar:public_courses' %}">Diğer öğrencilerin paylaştığı notları gözat →</a>
+                            </div>
 
                            
                             {% if selected_course %}
-                            <form method="post" class="mt-2" onsubmit="return confirm('Bu derse ait tüm notları silmek istediğinize emin misiniz?');">
+                            <form method="post" onsubmit="return confirm('Bu derse ait tüm notları silmek istediğinize emin misiniz?');">
                                 {% csrf_token %}
                                 <input type="hidden" name="action" value="clear_notes">
                                 <input type="hidden" name="course_id" value="{{ selected_course.id }}">
-                                <button class="btn btn-outline-danger" type="submit">Tüm Notları Temizle</button>
+                                <button type="submit" class="clear-notes-btn">🗑️ Tüm Notları Temizle</button>
                             </form>
                             {% endif %}
 
-                            <hr>
+                            <div class="notes-header">
+                                {% if notes %}
+                                    📌 Notlarım ({{ notes.count }})
+                                {% else %}
+                                    📌 Notlarım
+                                {% endif %}
+                            </div>
+
                             <div>
                                 {% if notes %}
                                     {% for n in notes %}
-                                        <div class="card mb-2">
-                                            <div class="card-body">
-                                                <h6 class="card-title">{{ n.title|default:'(Başlıksız)' }}</h6>
-                                                <p class="text-muted small">{{ n.created }}</p>
-                                                <p>{{ n.content }}</p>
+                                        <div class="note-item">
+                                            <div class="note-item-title">{{ n.title|default:'(Başlıksız)' }}</div>
+                                            <div class="note-item-meta">
+                                                ⏰ {{ n.created|date:"d M Y, H:i" }}
+                                                {% if n.is_public %}
+                                                    <span style="margin-left: 0.5rem; background: #667eea; color: white; padding: 0.2rem 0.6rem; border-radius: 12px; font-size: 0.75rem; font-weight: 700;">🌐 HERKESE AÇIK</span>
+                                                {% endif %}
                                             </div>
+                                            <div class="note-item-content">{{ n.content }}</div>
                                         </div>
                                     {% endfor %}
                                 {% else %}
-                                    <p class="muted">Henüz not yok. Yeni not ekleyin.</p>
+                                    <div class="empty-state">
+                                        <div class="empty-state-icon">✨</div>
+                                        <p>Henüz not yok. Yukarıdan yeni not ekleyin!</p>
+                                    </div>
                                 {% endif %}
                             </div>
                         {% endif %}

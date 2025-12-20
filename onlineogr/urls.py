@@ -20,6 +20,7 @@ from . import views
 
 urlpatterns = [
     path('', views.home, name='anasayfa'),
+    path('api/search-courses/', views.search_public_courses, name='search_public_courses'),
     path('Hakkimizda/',views.hakkimiz,name='Hakkimizda'),
     path('Bize-Ulasin/',views.ulas,name='Ulas'),
     path('Notlar/', include('Notlar.urls')),

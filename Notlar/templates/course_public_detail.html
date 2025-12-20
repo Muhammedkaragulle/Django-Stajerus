@@ -1,0 +1,320 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ course_name }} — Herkese Açık Notlar{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'notlar.css' %}">
+<style>
+    .course-header {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 2.5rem 0;
+        margin-bottom: 2rem;
+        border-radius: 8px;
+    }
+    .course-header h2 {
+        font-weight: 700;
+        margin-bottom: 0;
+        font-size: 2rem;
+    }
+    .note-card {
+        border: none;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        margin-bottom: 1.5rem;
+        transition: transform 0.2s, box-shadow 0.2s;
+        border-radius: 8px;
+    }
+    .note-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+    .note-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: start;
+        padding-bottom: 0.75rem;
+        border-bottom: 1px solid #e9ecef;
+    }
+    .note-meta {
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+        font-size: 0.9rem;
+    }
+    .author-badge {
+        background: #667eea;
+        color: white;
+        padding: 0.35rem 0.75rem;
+        border-radius: 20px;
+        font-size: 0.85rem;
+        font-weight: 600;
+    }
+    .timestamp {
+        color: #6c757d;
+        font-size: 0.85rem;
+    }
+    .note-content {
+        padding: 1.25rem 0;
+        line-height: 1.6;
+        color: #333;
+    }
+    .action-bar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-top: 0.75rem;
+        border-top: 1px solid #e9ecef;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+    }
+    .like-dislike-group {
+        display: flex;
+        gap: 0.5rem;
+    }
+    .like-btn, .dislike-btn {
+        border: 2px solid #e9ecef;
+        border-radius: 20px;
+        padding: 0.4rem 0.8rem;
+        font-size: 0.9rem;
+        font-weight: 600;
+        transition: all 0.2s;
+    }
+    .like-btn {
+        color: #667eea;
+    }
+    .like-btn:hover {
+        background: #667eea;
+        color: white;
+        border-color: #667eea;
+    }
+    .dislike-btn {
+        color: #e74c3c;
+    }
+    .dislike-btn:hover {
+        background: #e74c3c;
+        color: white;
+        border-color: #e74c3c;
+    }
+    .comment-section {
+        margin-top: 1rem;
+        padding-top: 1rem;
+        border-top: 1px solid #e9ecef;
+    }
+    .comments-header {
+        font-size: 0.95rem;
+        font-weight: 600;
+        color: #333;
+        margin-bottom: 0.75rem;
+    }
+    .comment-list {
+        max-height: 300px;
+        overflow-y: auto;
+        margin-bottom: 0.75rem;
+    }
+    .comment-item {
+        background: #f8f9fa;
+        border-left: 3px solid #667eea;
+        padding: 0.75rem;
+        margin-bottom: 0.5rem;
+        border-radius: 4px;
+        font-size: 0.9rem;
+    }
+    .comment-user {
+        font-weight: 600;
+        color: #667eea;
+        font-size: 0.85rem;
+    }
+    .comment-date {
+        color: #6c757d;
+        font-size: 0.75rem;
+    }
+    .comment-content {
+        margin-top: 0.25rem;
+        color: #333;
+    }
+    .comment-form-group {
+        display: flex;
+        gap: 0.5rem;
+    }
+    .comment-input {
+        flex: 1;
+        border: 1px solid #ddd;
+        border-radius: 20px;
+        padding: 0.6rem 1rem;
+        font-size: 0.9rem;
+    }
+    .comment-btn {
+        background: #667eea;
+        color: white;
+        border: none;
+        border-radius: 20px;
+        padding: 0.6rem 1.2rem;
+        font-weight: 600;
+        font-size: 0.9rem;
+        cursor: pointer;
+        transition: all 0.2s;
+    }
+    .comment-btn:hover {
+        background: #764ba2;
+        transform: scale(1.02);
+    }
+    .empty-state {
+        text-align: center;
+        padding: 3rem 1rem;
+        color: #6c757d;
+    }
+    .empty-state-icon {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+        opacity: 0.5;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+    <div class="course-header">
+        <h2>📚 {{ course_name }}</h2>
+        <p class="mb-0">Herkese Açık Ders Notları</p>
+    </div>
+
+    {% if notes %}
+        {% for n in notes %}
+            <div class="card note-card">
+                <div class="card-body">
+                    <div class="note-header">
+                        <div>
+                            <h5 class="card-title mb-2">{{ n.title|default:'(Başlıksız)' }}</h5>
+                            <div class="note-meta">
+                                <span class="author-badge">{{ n.user.username }}</span>
+                                <span class="timestamp">{{ n.created|date:"d M Y, H:i" }}</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="note-content">
+                        {{ n.content }}
+                    </div>
+
+                    <div class="action-bar">
+                        <div class="like-dislike-group">
+                            <button class="like-btn" data-id="{{ n.id }}">
+                                👍 <span class="likes-count">{{ n.likes.count }}</span>
+                            </button>
+                            <button class="dislike-btn" data-id="{{ n.id }}">
+                                👎 <span class="dislikes-count">{{ n.dislikes.count }}</span>
+                            </button>
+                        </div>
+                        <span class="text-muted small">💬 {{ n.comments.count }} yorum</span>
+                    </div>
+
+                    <div class="comment-section">
+                        <div class="comments-header">Yorumlar</div>
+                        
+                        <div class="comment-list">
+                            {% for c in n.comments.all|dictsort:"id" %}
+                                <div class="comment-item">
+                                    <div style="display: flex; justify-content: space-between;">
+                                        <span class="comment-user">{{ c.user.username }}</span>
+                                        <span class="comment-date">{{ c.created|date:"d M, H:i" }}</span>
+                                    </div>
+                                    <div class="comment-content">{{ c.content }}</div>
+                                </div>
+                            {% empty %}
+                                <div style="text-align: center; color: #6c757d; font-size: 0.9rem; padding: 1rem;">
+                                    Henüz yorum yok. İlk yorum yapan siz olun! 👇
+                                </div>
+                            {% endfor %}
+                        </div>
+
+                        {% if user.is_authenticated %}
+                            <form class="comment-form" data-id="{{ n.id }}">
+                                {% csrf_token %}
+                                <div class="comment-form-group">
+                                    <input type="text" name="content" class="comment-input" placeholder="Yorum yaz...">
+                                    <button type="submit" class="comment-btn">Gönder</button>
+                                </div>
+                            </form>
+                        {% else %}
+                            <div style="text-align: center; padding: 0.75rem; background: #f8f9fa; border-radius: 4px; font-size: 0.9rem;">
+                                Yorum yapmak için lütfen <a href="{% url 'giris' %}" style="color: #667eea; font-weight: 600;">giriş yapın</a>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    {% else %}
+        <div class="empty-state">
+            <div class="empty-state-icon">📝</div>
+            <h5>Bu derste henüz herkese açık not yok</h5>
+            <p>Öğrenciler notlarını paylaşmaya başladıklarında burada görünecektir.</p>
+        </div>
+    {% endif %}
+</div>
+
+<script>
+document.addEventListener('click', function(e){
+    if(e.target.matches('.like-btn')){
+        const id = e.target.dataset.id;
+        fetch(`/Notlar/note/${id}/like/`, {method:'POST', credentials: 'same-origin', headers:{'X-CSRFToken': getCookie('csrftoken')}})
+        .then(r=>r.json()).then(data=>{
+            if(data.likes_count!==undefined){
+                const btn = e.target.matches('.like-btn') ? e.target : e.target.closest('.like-btn');
+                if(btn) btn.querySelector('.likes-count').textContent = data.likes_count;
+            }
+        });
+    }
+    if(e.target.matches('.dislike-btn')){
+        const id = e.target.dataset.id;
+        fetch(`/Notlar/note/${id}/dislike/`, {method:'POST', credentials: 'same-origin', headers:{'X-CSRFToken': getCookie('csrftoken')}})
+        .then(r=>r.json()).then(data=>{
+            if(data.dislikes_count!==undefined){
+                const btn = e.target.matches('.dislike-btn') ? e.target : e.target.closest('.dislike-btn');
+                if(btn) btn.querySelector('.dislikes-count').textContent = data.dislikes_count;
+            }
+        });
+    }
+});
+
+function getCookie(name){
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== ''){
+        const cookies = document.cookie.split(';');
+        for (let i=0;i<cookies.length;i++){
+            const cookie = cookies[i].trim();
+            if (cookie.substring(0, name.length+1) === (name + '=')){
+                cookieValue = decodeURIComponent(cookie.substring(name.length+1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+
+// Handle comment forms
+if(document.querySelectorAll('.comment-form').length > 0) {
+    document.addEventListener('submit', function(ev){
+        if(!ev.target.matches('.comment-form')) return;
+        ev.preventDefault();
+        const form = ev.target;
+        const id = form.dataset.id;
+        const fd = new FormData(form);
+        fetch(`/Notlar/note/${id}/comment/`, {method:'POST', body:fd, credentials: 'same-origin', headers:{'X-CSRFToken': getCookie('csrftoken')}})
+        .then(r=>r.json()).then(data=>{
+            if(data.error) return;
+            const comments = form.closest('.card-body').querySelector('.comment-list');
+            const div = document.createElement('div');
+            div.className = 'comment-item';
+            const dateObj = new Date(data.created);
+            const timeStr = dateObj.toLocaleString('tr-TR', {day:'2-digit', month:'short', hour:'2-digit', minute:'2-digit'});
+            div.innerHTML = `<div style="display: flex; justify-content: space-between;"><span class="comment-user">${data.user}</span><span class="comment-date">${timeStr}</span></div><div class="comment-content">${data.content}</div>`;
+            comments.prepend(div);
+            form.querySelector('input[name="content"]').value='';
+        });
+    });
+}
+</script>
+
+{% endblock %}

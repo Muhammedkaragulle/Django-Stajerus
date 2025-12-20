@@ -1,0 +1,135 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Herkese Açık Dersler{% endblock %}
+
+{% block extra_css %}
+<style>
+    .courses-header {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 3rem 0;
+        margin-bottom: 2rem;
+        border-radius: 8px;
+        text-align: center;
+    }
+    .courses-header h1 {
+        font-weight: 700;
+        font-size: 2.5rem;
+        margin-bottom: 0.5rem;
+    }
+    .courses-header p {
+        font-size: 1.1rem;
+        margin-bottom: 0;
+        opacity: 0.95;
+    }
+    .course-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 1.5rem;
+    }
+    .course-card {
+        border: none;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        border-radius: 10px;
+        overflow: hidden;
+        transition: all 0.3s ease;
+        cursor: pointer;
+        height: 100%;
+    }
+    .course-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
+        border-color: #667eea;
+    }
+    .course-card-header {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 1.5rem;
+        text-align: center;
+    }
+    .course-card-icon {
+        font-size: 2.5rem;
+        margin-bottom: 0.5rem;
+    }
+    .course-card-title {
+        font-size: 1.25rem;
+        font-weight: 700;
+        margin: 0;
+        word-break: break-word;
+    }
+    .course-card-body {
+        padding: 1.5rem;
+        text-align: center;
+    }
+    .course-link {
+        display: inline-block;
+        background: #667eea;
+        color: white;
+        padding: 0.75rem 1.5rem;
+        border-radius: 25px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: all 0.2s;
+        width: 100%;
+        border: none;
+        cursor: pointer;
+        font-size: 0.95rem;
+    }
+    .course-link:hover {
+        background: #764ba2;
+        transform: scale(1.02);
+        text-decoration: none;
+        color: white;
+    }
+    .empty-state {
+        text-align: center;
+        padding: 4rem 2rem;
+        color: #6c757d;
+    }
+    .empty-state-icon {
+        font-size: 4rem;
+        margin-bottom: 1rem;
+        opacity: 0.5;
+    }
+    .empty-state h4 {
+        font-size: 1.5rem;
+        margin-bottom: 0.5rem;
+        color: #333;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+    <div class="courses-header">
+        <h1>📚 Herkese Açık Dersler</h1>
+        <p>Öğrencilerin paylaştığı ders notlarını keşfet</p>
+    </div>
+
+    {% if course_names %}
+        <div class="course-grid">
+            {% for name in course_names %}
+                <div class="course-card">
+                    <div class="course-card-header">
+                        <div class="course-card-icon">📖</div>
+                        <h3 class="course-card-title">{{ name }}</h3>
+                    </div>
+                    <div class="course-card-body">
+                        <a href="{% url 'Notlar:public_course_detail' name %}" class="course-link">
+                            Notları Görüntüle →
+                        </a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="empty-state">
+            <div class="empty-state-icon">📝</div>
+            <h4>Henüz herkese açık ders yok</h4>
+            <p>Öğrenciler notlarını paylaşmaya başladıklarında burada görünecektir.</p>
+            <p><a href="{% url 'Notlar:index' %}" style="color: #667eea; font-weight: 600;">Kendi notlarınızı ekleyin →</a></p>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}
