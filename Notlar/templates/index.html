@@ -347,7 +347,7 @@
     <div class="container py-4">
         {% if selected_course %}
             <div class="page-header">
-                <h2 style="margin: 0; font-size: 2rem;">📚 {{ selected_course.name }}</h2>
+                <h2 style="margin: 0; font-size: 2rem;"><i class="bi bi-book"></i> {{ selected_course.name }}</h2>
                 <p style="margin: 0.5rem 0 0 0; opacity: 0.95;">Ders notlarınızı yönetin ve paylaşın</p>
             </div>
         {% endif %}
@@ -356,14 +356,14 @@
             <aside class="col-md-4">
                 <div class="sidebar-card">
                     <div class="sidebar-header">
-                        📖 Derslerim
+                        <i class="bi bi-journal-text"></i> Derslerim
                     </div>
                     <div class="p-3">
                         <form method="post" class="add-course-form">
                             {% csrf_token %}
                             <input type="hidden" name="action" value="add_course">
                             <input name="course_name" placeholder="Yeni ders adı..." required>
-                            <button type="submit">➕ Ekle</button>
+                            <button type="submit"><i class="bi bi-plus-lg"></i> Ekle</button>
                         </form>
 
                         <ul class="courses-list">
@@ -373,7 +373,7 @@
                                 </li>
                             {% empty %}
                                 <div class="empty-state" style="padding: 2rem 1rem;">
-                                    <div class="empty-state-icon">📚</div>
+                                    <div class="empty-state-icon"><i class="bi bi-book"></i></div>
                                     <p>Henüz ders yok</p>
                                 </div>
                             {% endfor %}
@@ -385,7 +385,7 @@
             <main class="col-md-8">
                 <div class="main-card">
                     <div class="card-header-custom">
-                        ✍️ {% if selected_course %}{{ selected_course.name }}{% else %}Notlar{% endif %}
+                        <i class="bi bi-pencil-square"></i> {% if selected_course %}{{ selected_course.name }}{% else %}Notlar{% endif %}
                     </div>
 
                     <div style="padding: 2rem;">
@@ -401,12 +401,12 @@
                                     <input type="hidden" name="course_id" value="{% if selected_course %}{{ selected_course.id }}{% endif %}">
                                     
                                     <div class="form-input-group">
-                                        <label for="note_title">📝 Not Başlığı</label>
+                                        <label for="note_title"><i class="bi bi-pencil"></i> Not Başlığı</label>
                                         <input type="text" id="note_title" name="note_title" placeholder="Başlık yazın...">
                                     </div>
 
                                     <div class="form-input-group">
-                                        <label for="note_content">📄 Not İçeriği</label>
+                                        <label for="note_content"><i class="bi bi-file-text"></i> Not İçeriği</label>
                                         <textarea id="note_content" name="note_content" placeholder="Not içeriğini yazın..." rows="6"></textarea>
                                     </div>
 
@@ -414,20 +414,20 @@
                                         <div class="form-check">
                                             <input type="checkbox" class="form-check-input" value="1" id="is_public" name="is_public">
                                             <label class="form-check-label" for="is_public">
-                                                🌐 Herkese Açık Olarak Paylaş
+                                                <i class="bi bi-globe"></i> Herkese Açık Olarak Paylaş
                                             </label>
                                             <small>Bu seçeneği işaretlerseniz, diğer kullanıcılar bu notu görebilir, beğenebilir, beğenmeyebilir ve yorum yapabilir.</small>
                                         </div>
                                     </div>
 
                                     <div class="button-group">
-                                        <button type="submit" class="btn-save">💾 Notu Kaydet</button>
+                                        <button type="submit" class="btn-save"><i class="bi bi-save"></i> Notu Kaydet</button>
                                     </div>
                                 </form>
                             </div>
 
                             <div class="info-alert">
-                                ℹ️ <strong>Herkese Açık Notları Keşfet:</strong> <a href="{% url 'Notlar:public_courses' %}">Diğer öğrencilerin paylaştığı notları gözat →</a>
+                                <i class="bi bi-info-circle"></i> <strong>Herkese Açık Notları Keşfet:</strong> <a href="{% url 'Notlar:public_courses' %}">Diğer öğrencilerin paylaştığı notları gözat →</a>
                             </div>
 
                            
@@ -436,15 +436,15 @@
                                 {% csrf_token %}
                                 <input type="hidden" name="action" value="clear_notes">
                                 <input type="hidden" name="course_id" value="{{ selected_course.id }}">
-                                <button type="submit" class="clear-notes-btn">🗑️ Tüm Notları Temizle</button>
+                                <button type="submit" class="clear-notes-btn"><i class="bi bi-trash"></i> Tüm Notları Temizle</button>
                             </form>
                             {% endif %}
 
                             <div class="notes-header">
                                 {% if notes %}
-                                    📌 Notlarım ({{ notes.count }})
+                                    <i class="bi bi-pin-angle"></i> Notlarım ({{ notes.count }})
                                 {% else %}
-                                    📌 Notlarım
+                                    <i class="bi bi-pin-angle"></i> Notlarım
                                 {% endif %}
                             </div>
 
@@ -454,9 +454,9 @@
                                         <div class="note-item">
                                             <div class="note-item-title">{{ n.title|default:'(Başlıksız)' }}</div>
                                             <div class="note-item-meta">
-                                                ⏰ {{ n.created|date:"d M Y, H:i" }}
+                                                <i class="bi bi-clock"></i> {{ n.created|date:"d M Y, H:i" }}
                                                 {% if n.is_public %}
-                                                    <span style="margin-left: 0.5rem; background: #667eea; color: white; padding: 0.2rem 0.6rem; border-radius: 12px; font-size: 0.75rem; font-weight: 700;">🌐 HERKESE AÇIK</span>
+                                                    <span style="margin-left: 0.5rem; background: #667eea; color: white; padding: 0.2rem 0.6rem; border-radius: 12px; font-size: 0.75rem; font-weight: 700;"><i class="bi bi-globe"></i> HERKESE AÇIK</span>
                                                 {% endif %}
                                             </div>
                                             <div class="note-item-content">{{ n.content }}</div>
@@ -464,7 +464,7 @@
                                     {% endfor %}
                                 {% else %}
                                     <div class="empty-state">
-                                        <div class="empty-state-icon">✨</div>
+                                        <div class="empty-state-icon"><i class="bi bi-stars"></i></div>
                                         <p>Henüz not yok. Yukarıdan yeni not ekleyin!</p>
                                     </div>
                                 {% endif %}

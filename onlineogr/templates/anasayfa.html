@@ -229,8 +229,8 @@
             <div class="search-container">
                 <div class="search-wrapper">
                     <input type="text" class="search-input" id="searchInput" placeholder="Hangi alanda Not almak istiyorsun? (Örn: Matematik, Django)">
-                    <button class="btn-categories" id="categoriesBtn">📂 Tüm Kategoriler</button>
-                    <button class="btn-search" id="searchBtn">🔍 Not Ara</button>
+                    <button class="btn-categories" id="categoriesBtn"><i class="bi bi-folder"></i> Tüm Kategoriler</button>
+                    <button class="btn-search" id="searchBtn"><i class="bi bi-search"></i> Not Ara</button>
                 </div>
                 <div class="search-suggestions" id="suggestions"></div>
             </div>
@@ -241,8 +241,8 @@
     
     <div class="categories-popup" id="categoriesPopup">
         <div class="categories-header">
-            <span>📚 Herkese Açık Tüm Dersler</span>
-            <button id="closeBtn">✕</button>
+            <span><i class="bi bi-book"></i> Herkese Açık Tüm Dersler</span>
+            <button id="closeBtn"><i class="bi bi-x-lg"></i></button>
         </div>
         <div class="categories-content">
             {% if public_courses %}

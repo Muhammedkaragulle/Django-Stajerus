@@ -103,7 +103,7 @@
 {% block content %}
 <div class="container py-4">
     <div class="courses-header">
-        <h1>📚 Herkese Açık Dersler</h1>
+        <h1><i class="bi bi-book"></i> Herkese Açık Dersler</h1>
         <p>Öğrencilerin paylaştığı ders notlarını keşfet</p>
     </div>
 
@@ -112,7 +112,7 @@
             {% for name in course_names %}
                 <div class="course-card">
                     <div class="course-card-header">
-                        <div class="course-card-icon">📖</div>
+                        <div class="course-card-icon"><i class="bi bi-journal-text"></i></div>
                         <h3 class="course-card-title">{{ name }}</h3>
                     </div>
                     <div class="course-card-body">
@@ -125,7 +125,7 @@
         </div>
     {% else %}
         <div class="empty-state">
-            <div class="empty-state-icon">📝</div>
+            <div class="empty-state-icon"><i class="bi bi-pencil-square"></i></div>
             <h4>Henüz herkese açık ders yok</h4>
             <p>Öğrenciler notlarını paylaşmaya başladıklarında burada görünecektir.</p>
             <p><a href="{% url 'Notlar:index' %}" style="color: #667eea; font-weight: 600;">Kendi notlarınızı ekleyin →</a></p>
