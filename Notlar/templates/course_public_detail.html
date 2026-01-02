@@ -175,7 +175,7 @@
 {% block content %}
 <div class="container py-4">
     <div class="course-header">
-        <h2>📚 {{ course_name }}</h2>
+        <h2><i class="bi bi-book-fill"></i> {{ course_name }}</h2>
         <p class="mb-0">Herkese Açık Ders Notları</p>
     </div>
 
@@ -200,13 +200,13 @@
                     <div class="action-bar">
                         <div class="like-dislike-group">
                             <button class="like-btn" data-id="{{ n.id }}">
-                                👍 <span class="likes-count">{{ n.likes.count }}</span>
+                                <i class="bi bi-hand-thumbs-up-fill"></i> <span class="likes-count">{{ n.likes.count }}</span>
                             </button>
                             <button class="dislike-btn" data-id="{{ n.id }}">
-                                👎 <span class="dislikes-count">{{ n.dislikes.count }}</span>
+                                <i class="bi bi-hand-thumbs-down-fill"></i> <span class="dislikes-count">{{ n.dislikes.count }}</span>
                             </button>
                         </div>
-                        <span class="text-muted small">💬 {{ n.comments.count }} yorum</span>
+                        <span class="text-muted small"><i class="bi bi-chat-dots-fill"></i> {{ n.comments.count }} yorum</span>
                     </div>
 
                     <div class="comment-section">
@@ -223,7 +223,7 @@
                                 </div>
                             {% empty %}
                                 <div style="text-align: center; color: #6c757d; font-size: 0.9rem; padding: 1rem;">
-                                    Henüz yorum yok. İlk yorum yapan siz olun! 👇
+                                    Henüz yorum yok. İlk yorum yapan siz olun! <i class="bi bi-arrow-down-circle"></i>
                                 </div>
                             {% endfor %}
                         </div>
@@ -247,7 +247,7 @@
         {% endfor %}
     {% else %}
         <div class="empty-state">
-            <div class="empty-state-icon">📝</div>
+            <div class="empty-state-icon"><i class="bi bi-pencil-square"></i></div>
             <h5>Bu derste henüz herkese açık not yok</h5>
             <p>Öğrenciler notlarını paylaşmaya başladıklarında burada görünecektir.</p>
         </div>

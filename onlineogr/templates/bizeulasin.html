@@ -1,0 +1,98 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Stajyerus - Bize Ulaşn{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'bizeulasin.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="page-content">
+        <div class="main-content">
+            <div class="hero">
+                <h2 class="main-title">💌 Bize Ulaşın</h2>
+                <p class="slogan">Online Öğrenci ekibine bir mesaj gönderin, sorularınızı veya geri bildirimlerinizi paylaşın. Size en kısa sürede dönüş yapacağız.</p>
+            </div>
+            
+            <div class="page-body">
+                
+                <div class="contact-form-container">
+                    
+                    <h2>💬 Mesaj Gönderin</h2>
+                    <form class="contact-form" onsubmit="alert('Mesajınız başarıyla gönderildi! (Bu bir demondur.)'); return false;">
+                        <div class="input-group">
+                            <label for="name">Adınız ve Soyadınız</label>
+                            <input type="text" id="name" placeholder="Adınızı ve soyadınızı girin" required>
+                        </div>
+                        
+                        <div class="input-group">
+                            <label for="email">E-posta Adresiniz</label>
+                            <input type="email" id="email" placeholder="ornek@mail.com" required>
+                        </div>
+                        
+                        <div class="input-group">
+                            <label for="subject">Konu</label>
+                            <input type="text" id="subject" placeholder="Örn: Teknik Destek, İş Birliği" required>
+                        </div>
+                        
+                        <div class="input-group">
+                            <label for="message">Mesajınız</label>
+                            <textarea id="message" rows="6" placeholder="Detaylı mesajınızı buraya yazabilirsiniz..." required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn-submit">
+                            Mesajımı Gönder
+                        </button>
+                    </form>
+                </div>
+                
+                <h2>📞 İletişim Bilgilerimiz</h2>
+                <div class="contact-info-grid">
+                    
+                    <div class="info-card">
+                        <h4>
+                            <svg class="contact-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="m22 6-10 7L2 6"/></svg>
+                            E-posta
+                        </h4>
+                        <p>destek@onlineogrenci.com</p>
+                        <p>iletisim@onlineogrenci.com</p>
+                    </div>
+                    
+                    <div class="info-card">
+                        <h4>
+                            <svg class="contact-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.63A2 2 0 0 1 3.08 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                            Telefon
+                        </h4>
+                        <p>+90 (555) 123 45 67 (Destek)</p>
+                        <p>Hafta içi 09:00 - 17:00</p>
+                    </div>
+                    
+                    <div class="info-card">
+                        <h4>
+                            <svg class="contact-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                            Adres
+                        </h4>
+                        <p>Online Öğrenci Merkezi</p>
+                        <p>Dijital Eğitim Sok. No: 42/B, Teknoloji Parkı / İstanbul</p>
+                    </div>
+                    
+                </div>
+                
+                <p class="copyright-text" style="text-align: center; margin-top: 5rem;">
+                    ©️ 2025 Online Öğrenci Platformu. Tüm hakları saklıdır.
+                </p>
+            </div>
+        </div>
+    </div>
+                
+              
+                <p class="copyright-text" style="text-align: center; margin-top: 5rem;">
+                    ©️ 2025 Online Öğrenci Platformu. Tüm hakları saklıdır.
+                </p>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

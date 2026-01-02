@@ -1,0 +1,354 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Stajyerus - Anasayfa{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'anasayfa.css' %}">
+    <style>
+        .hero {
+            text-align: center;
+            padding: 3rem 0;
+        }
+        
+        .hero h2 {
+            font-size: 3rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1.25rem;
+            color: #666;
+            margin-bottom: 2.5rem;
+        }
+        
+        .search-container {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+        }
+        
+        .search-wrapper {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .search-input {
+            flex: 1;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            padding: 0.95rem 1.2rem;
+            font-size: 1rem;
+            transition: all 0.2s;
+        }
+        
+        .search-input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+        }
+        
+        .search-suggestions {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 8.5rem;
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-top: none;
+            border-radius: 0 0 10px 10px;
+            max-height: 300px;
+            overflow-y: auto;
+            z-index: 100;
+            display: none;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        .search-suggestions.active {
+            display: block;
+        }
+        
+        .suggestion-item {
+            padding: 0.85rem 1.2rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .suggestion-item:last-child {
+            border-bottom: none;
+        }
+        
+        .suggestion-item:hover {
+            background: #f8faff;
+            color: #667eea;
+            font-weight: 600;
+        }
+        
+        .btn-categories {
+            background: white;
+            color: #333;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            padding: 0.95rem 1.5rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+        
+        .btn-categories:hover {
+            border-color: #667eea;
+            color: #667eea;
+            transform: translateY(-2px);
+        }
+        
+        .btn-search {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            padding: 0.95rem 2.5rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s;
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+            white-space: nowrap;
+        }
+        
+        .btn-search:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(102, 126, 234, 0.4);
+        }
+        
+        .categories-popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            z-index: 1000;
+            max-width: 600px;
+            max-height: 80vh;
+            overflow-y: auto;
+            width: 90%;
+        }
+        
+        .categories-popup.active {
+            display: block;
+        }
+        
+        .categories-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px 15px 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 700;
+        }
+        
+        .categories-header button {
+            background: white;
+            color: #667eea;
+            border: none;
+            border-radius: 50%;
+            width: 2rem;
+            height: 2rem;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .categories-header button:hover {
+            transform: rotate(90deg);
+        }
+        
+        .categories-content {
+            padding: 2rem;
+        }
+        
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 1rem;
+        }
+        
+        .category-btn {
+            background: #f8faff;
+            border: 2px solid #e8ecff;
+            border-radius: 10px;
+            padding: 1rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .category-btn:hover {
+            background: #667eea;
+            color: white;
+            border-color: #667eea;
+            transform: translateY(-4px);
+        }
+        
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.3);
+            z-index: 999;
+        }
+        
+        .overlay.active {
+            display: block;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <div class="main-content">
+        <div class="hero">
+            <h2>Tek ihtiyacın bilgin!</h2>
+            <p>Stajyerus'la online eğitim parmaklarının ucunda!</p>
+
+            <div class="search-container">
+                <div class="search-wrapper">
+                    <input type="text" class="search-input" id="searchInput" placeholder="Hangi alanda Not almak istiyorsun? (Örn: Matematik, Django)">
+                    <button class="btn-categories" id="categoriesBtn">📂 Tüm Kategoriler</button>
+                    <button class="btn-search" id="searchBtn">🔍 Not Ara</button>
+                </div>
+                <div class="search-suggestions" id="suggestions"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="overlay" id="overlay"></div>
+    
+    <div class="categories-popup" id="categoriesPopup">
+        <div class="categories-header">
+            <span>📚 Herkese Açık Tüm Dersler</span>
+            <button id="closeBtn">✕</button>
+        </div>
+        <div class="categories-content">
+            {% if public_courses %}
+                <div class="categories-grid">
+                    {% for course in public_courses %}
+                        <a href="/Notlar/public/{{ course }}/" class="category-btn">
+                            {{ course }}
+                        </a>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <p style="text-align: center; color: #999; padding: 2rem;">Henüz herkese açık ders yok.</p>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="external-info">
+        <h3>Online Eğitim Platformları: Verimli Vakit Geçirebileceğiniz Siteler</h3>
+        <p class="copyright-text">Görseller telif hakkına tabi olabilir. Daha Fazla Bilgi</p>
+
+        <div class="external-actions">
+            <div class="share-save">
+                <a href="#">Paylaş</a>
+                <a href="#">Kaydet</a>
+            </div>
+            <button class="btn-git">Git</button>
+        </div>
+    </div>
+
+    <script>
+        const searchInput = document.getElementById('searchInput');
+        const suggestions = document.getElementById('suggestions');
+        const categoriesBtn = document.getElementById('categoriesBtn');
+        const categoriesPopup = document.getElementById('categoriesPopup');
+        const closeBtn = document.getElementById('closeBtn');
+        const overlay = document.getElementById('overlay');
+        const searchBtn = document.getElementById('searchBtn');
+
+        // Search functionality
+        searchInput.addEventListener('input', async (e) => {
+            const query = e.target.value.trim();
+            if (query.length < 1) {
+                suggestions.classList.remove('active');
+                return;
+            }
+
+            try {
+                const response = await fetch(`/api/search-courses/?q=${encodeURIComponent(query)}`);
+                const data = await response.json();
+                
+                if (data.results.length > 0) {
+                    suggestions.innerHTML = data.results.map(result => 
+                        `<div class="suggestion-item" onclick="window.location.href='${result.url}'">${result.name}</div>`
+                    ).join('');
+                    suggestions.classList.add('active');
+                } else {
+                    suggestions.innerHTML = '<div class="suggestion-item" style="color: #999; cursor: default;">Sonuç bulunamadı</div>';
+                    suggestions.classList.add('active');
+                }
+            } catch (error) {
+                console.error('Search error:', error);
+            }
+        });
+
+        // Categories popup
+        categoriesBtn.addEventListener('click', () => {
+            categoriesPopup.classList.add('active');
+            overlay.classList.add('active');
+        });
+
+        closeBtn.addEventListener('click', () => {
+            categoriesPopup.classList.remove('active');
+            overlay.classList.remove('active');
+        });
+
+        overlay.addEventListener('click', () => {
+            categoriesPopup.classList.remove('active');
+            overlay.classList.remove('active');
+        });
+
+        // Search button
+        searchBtn.addEventListener('click', () => {
+            const query = searchInput.value.trim();
+            if (query.length > 0) {
+                fetch(`/api/search-courses/?q=${encodeURIComponent(query)}`)
+                    .then(r => r.json())
+                    .then(data => {
+                        if (data.results.length > 0) {
+                            window.location.href = data.results[0].url;
+                        }
+                    });
+            }
+        });
+
+        // Close suggestions on outside click
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.search-container')) {
+                suggestions.classList.remove('active');
+            }
+        });
+
+        // Enter key to search
+        searchInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                searchBtn.click();
+            }
+        });
+    </script>
+{% endblock %}
