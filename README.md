@@ -8,10 +8,10 @@ Kağıt kalem devrini sona erdirmeyi hedefleyen bu uygulama, öğrencilerin diji
 
 ## 👥 Proje Ekibi
 
-- **Miraç Muhammet Karagülle**
-- **Osman Çimen**
-- **Büşra Çelik**
-- **Ossama**
+- **Miraç Muhammet Karagülle (Notlar app)**
+- **Osman Çimen (kullanicilar app)**
+- **Büşra Çelik (onlineogr app)**
+- **Ossama(yapmadı)**
 
 ## 🎯 Proje Hedefleri
 
