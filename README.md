@@ -6,13 +6,17 @@
 Kağıt kalem devrini sona erdirmeyi hedefleyen bu uygulama, öğrencilerin dijital ortamda eğitim süreçlerini yönetmelerini sağlarken,
 öğretmenlerin de not paylaşabileceği interaktif bir ortam sunar.
 
+---
+
 ## 👥 Proje Ekibi
 
-- **Miraç Muhammet Karagülle (Notlar app)**
-- **Osman Çimen (kullanicilar app)**
-- **Büşra Çelik (onlineogr app)**
-- **Ossama(yapmadı)**
+| Ekip Üyesi | Görev | Katkı |
+|------------|-------|-------|
+| **Miraç Muhammet Karagülle** | Notlar App Developer | Not yönetimi, sosyal özellikler, beğeni/yorum sistemi |
+| **Osman Çimen** | kullanicilar App Developer | Kullanıcı kayıt, giriş, şifre yönetimi |
+| **Büşra Çelik** | onlineogr App Developer | Ana proje yapılandırması, arayüz tasarımı |
 
+---
 # 📚 Django Stajerus - Modern Online Öğrenci Platformu
 
 <div align="center">
@@ -280,17 +284,7 @@ Django-Stajerus/
 ### Arama
 - `GET /api/search-courses/` - Ders arama
 
----
 
-## 👥 Proje Ekibi
-
-| Ekip Üyesi | Görev | Katkı |
-|------------|-------|-------|
-| **Miraç Muhammet Karagülle** | Notlar App Developer | Not yönetimi, sosyal özellikler, beğeni/yorum sistemi |
-| **Osman Çimen** | kullanicilar App Developer | Kullanıcı kayıt, giriş, şifre yönetimi |
-| **Büşra Çelik** | onlineogr App Developer | Ana proje yapılandırması, arayüz tasarımı |
-
----
 
 ## 🎨 Öne Çıkan Özellikler
 
